@@ -27,12 +27,36 @@ public class BinarySearch {
         }
         return searchElementIndex;
     }
+
+
+    //Recursion binary search program
+
+    public static int binarySearchRecursive(int[] array, int key, int lowerIndex, int higherIndex) {
+
+        int searchElementIndex = -1;
+        if (higherIndex >= 1 && lowerIndex <= higherIndex) {
+            int midOfArrayIndex = (lowerIndex + higherIndex) / 2;
+
+            if (array[midOfArrayIndex] == key) {
+                return midOfArrayIndex;
+            }
+            if (array[midOfArrayIndex] > key) {
+                return binarySearchRecursive(array, key, lowerIndex, midOfArrayIndex - 1);
+            }
+            return binarySearchRecursive(array, key, midOfArrayIndex + 1, higherIndex);
+        }
+        
+        return searchElementIndex;
+        
+    }
     
 
     public static void main(String[] args) {
 
         int []  ele = {2, 5, 6, 8, 9, 30, 68};
 
-        System.out.println(BinarySearch.binarySearch(ele, 30));
+       // System.out.println(BinarySearch.binarySearch(ele, 90));
+
+        System.out.println(BinarySearch.binarySearchRecursive(ele, 30, 0, ele.length-1));
     }
 }
